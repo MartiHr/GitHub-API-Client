@@ -36,6 +36,3 @@ Ensure you have [Go](https://go.dev/) installed, then run the program by passing
 google
 octocat
 microsoft
-
-## License
-Apache-2.0 license
