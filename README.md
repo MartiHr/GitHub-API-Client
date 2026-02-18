@@ -1,10 +1,38 @@
 # GitHub API Client
 
-Implements GItHub API HTTP client that will:
+A command-line utility written in **Go** that aggregates and visualizes GitHub user data. This tool processes batches of usernames to generate detailed statistics regarding repository activity, language distribution, and engagement metrics.
 
-Read a text file given as command line argument to the program and parse different Github usernames – each username on separate line in the file.
-Fetch GitHub users data in JSON format using public GitHub API: https://api.github.com/users/${username}
-Fetch GitHub user repositories data in JSON format from: https://api.github.com/users/${username}/repos
-Fetch information about programming languages in each repo from: https://api.github.com/repos/${username}/${repo-name}/languages
-Parse the JSON data using json.Unmarshal into appropriate data structures in Go (you could define only fields that are interesting, all fields exported = starting with capital letter).
-Print a statistics report containing the information about the user, the number of user repositories, the distribution of programming languages according to their usage numbers (third URL), the total number of followers, number of forks for all repositories, by year distribution of user activity calculated using repositories creation and last update dates. Format the report and print it to the console as structured tables
+## Features
+
+The client automates data collection by interacting with the following GitHub API endpoints:
+* **User Profiles:** `GET /users/{username}`
+* **Repository Lists:** `GET /users/{username}/repos`
+* **Language Statistics:** `GET /repos/{username}/{repo}/languages`
+
+### Core Functionality
+* **Batch Input:** Reads a plain text file provided as a command-line argument (one username per line).
+* **Efficient Parsing:** Uses `json.Unmarshal` to map API responses into optimized Go structs, selecting only relevant exported fields.
+* **Data Aggregation:** Consolidates data from multiple endpoints to provide a holistic view of user activity.
+
+---
+
+## Technical Statistics
+
+The program generates a structured console report including:
+
+* **Profile Overview:** Username and total follower count.
+* **Repository Metrics:** Total number of repositories and cumulative fork counts.
+* **Language Distribution:** Usage numbers for programming languages across all repositories.
+* **Activity Timeline:** Year-by-year distribution of activity based on repository creation and "last updated" timestamps.
+
+---
+
+## Usage
+
+Ensure you have [Go](https://go.dev/) installed, then run the program by passing a text file containing GitHub usernames.
+
+### 1. Prepare User List (`users.txt`)
+```text
+google
+octocat
+microsoft
